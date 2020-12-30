@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Class to test the functionality of {@link StringCalculator}
  */
-public class StringCalculatorTest {
+class StringCalculatorTest {
 
 
     @BeforeAll
@@ -16,16 +16,23 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void testAdd_HappyCase() {
+    void testAdd_HappyCase() {
         StringCalculator stringCalculator = new StringCalculator();
         Integer result = stringCalculator.add(TestConstants.COMMA_SEPARATED_NUMBERS);
         Assertions.assertEquals(3, result);
     }
 
     @Test
-    public void testAdd_BlankString() {
+    void testAdd_BlankString() {
         StringCalculator stringCalculator = new StringCalculator();
         Integer result = stringCalculator.add(TestConstants.EMPTY_STRING);
         Assertions.assertEquals(0, result);
+    }
+
+    @Test
+    void testAdd_UnknownAmountOfNumbers() {
+        StringCalculator stringCalculator = new StringCalculator();
+        Integer result = stringCalculator.add(TestConstants.COMMA_SEPARATED_UNKNOWN_AMOUNT_OF_NUMBERS);
+        Assertions.assertEquals(6, result);
     }
 }
