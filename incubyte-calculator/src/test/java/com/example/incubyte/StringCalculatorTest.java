@@ -110,5 +110,12 @@ class StringCalculatorTest {
         Assertions.assertEquals(6, result);
     }
 
+    @Test
+    void testAdd_WithMultipleDelimitersOfVariableLengths() {
+        StringCalculator stringCalculator = new StringCalculator();
+        Integer result = stringCalculator.add(TestConstants.NUMBERS_WITH_MULTIPLE_DELIMITERS_OF_VARIABLE_LENGTHS);
+        Assertions.assertEquals(6, result);
+    }
+
 
 }
