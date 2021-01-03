@@ -96,4 +96,11 @@ class StringCalculatorTest {
         Assertions.assertEquals(2, result);
     }
 
+    @Test
+    void testAdd_WithDelimitersOfAnyLength() {
+        StringCalculator stringCalculator = new StringCalculator();
+        Integer result = stringCalculator.add(TestConstants.NUMBERS_WITH_MORE_THAN_ONE_CHARACTER_DELIMITER);
+        Assertions.assertEquals(6, result);
+    }
+
 }

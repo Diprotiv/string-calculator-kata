@@ -5,6 +5,7 @@ import com.example.incubyte.exceptions.StringCalculatorException;
 import lombok.NonNull;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RegExUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.regex.Pattern;
  * Class to demonstrate the functionality of Simple Calculator.
  */
 public class StringCalculator {
-    private static final String DELIMITER = "^(\\/\\/)(.+)[\\n]";
+    private static final String DELIMITER = "^(\\/\\/)\\[(.+)\\][\\n]";
     private static final String NEGATIVE_NUMBER = "-(\\d)+";
 
     public Integer add(final String numbers) {
@@ -55,8 +56,8 @@ public class StringCalculator {
     }
 
     private String validateInput(final String numbers) {
-        final String delimiter = getDelimiter(numbers);
-        String validRegex = "^(\\/\\/.+[\\n])?((-)?\\d)+([" + delimiter + "|\\n]((-)?\\d)+)*$";
+        final String delimiter = RegExUtils.replaceAll(getDelimiter(numbers), "\\p{Punct}", "\\\\$0");
+        String validRegex = "^(\\/\\/\\[" + delimiter +"\\][\\n])?((-)?\\d)+((" + delimiter +"|\\n)((-)?\\d)+)*$";
         if (!numbers.matches(validRegex)) {
             throw new StringCalculatorException(ApplicationConstants.INVALID_INPUT_FORMAT_ERROR_MESSAGE);
         }
