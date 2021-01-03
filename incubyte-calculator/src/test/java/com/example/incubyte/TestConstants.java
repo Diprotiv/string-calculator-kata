@@ -10,6 +10,8 @@ public class TestConstants {
     public static final String NUMBERS_WITH_SEMICOLON = "//;\n1;2";
     public static final String NUMBERS_WITH_SEMICOLON_AND_NEWLINE = "//;\n1;2\n3";
     public static final String INPUT_WITH_NEGATIVE_NUMBERS = "1,-2,3";
+    public static final String INPUT_WITH_MULTIPLE_NEGATIVE_NUMBERS = "1,-2,-3";
+    public static final String INPUT_WITH_NUMBERS_GREATER_THAN_THOUSAND = "1001,2";
     public static final String INVALID_INPUT_FORMAT_ERROR_MESSAGE = "Invalid Input format for numbers.";
     public static final String NEGATIVE_NUMBERS_INVALID_ERROR_MESSAGE = "Negatives not allowed. Found negatives: ";
 }

@@ -26,9 +26,7 @@ class StringCalculatorTest {
     @Test
     void testAdd_WithInvalidInput() {
         StringCalculator stringCalculator = new StringCalculator();
-        Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> {
-            stringCalculator.add(TestConstants.COMMA_SEPARATED_INVALID_NUMBERS);
-        });
+        Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> stringCalculator.add(TestConstants.COMMA_SEPARATED_INVALID_NUMBERS));
         Assertions.assertTrue(exception.getMessage().contains(TestConstants.INVALID_INPUT_FORMAT_ERROR_MESSAGE));
     }
 
@@ -57,9 +55,7 @@ class StringCalculatorTest {
     @Test
     void testAdd_WithNewLinesAsSeparatorsInvalidFormat() {
         StringCalculator stringCalculator = new StringCalculator();
-        Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> {
-            stringCalculator.add(TestConstants.COMMA_SEPARATED_INVALID_NUMBERS_WITH_NEWLINE);
-        });
+        Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> stringCalculator.add(TestConstants.COMMA_SEPARATED_INVALID_NUMBERS_WITH_NEWLINE));
         Assertions.assertTrue(exception.getMessage().contains(TestConstants.INVALID_INPUT_FORMAT_ERROR_MESSAGE));
     }
 
@@ -80,11 +76,24 @@ class StringCalculatorTest {
     @Test
     void testAdd_WithNegativeNumbers() {
         StringCalculator stringCalculator = new StringCalculator();
-        Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> {
-            stringCalculator.add(TestConstants.INPUT_WITH_NEGATIVE_NUMBERS);
-        });
+        Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> stringCalculator.add(TestConstants.INPUT_WITH_NEGATIVE_NUMBERS));
         Assertions.assertTrue(exception.getMessage().contains(TestConstants.NEGATIVE_NUMBERS_INVALID_ERROR_MESSAGE));
         Assertions.assertTrue(exception.getMessage().contains("-2"));
+    }
+
+    @Test
+    void testAdd_WithMultipleNegativeNumbers() {
+        StringCalculator stringCalculator = new StringCalculator();
+        Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> stringCalculator.add(TestConstants.INPUT_WITH_MULTIPLE_NEGATIVE_NUMBERS));
+        Assertions.assertTrue(exception.getMessage().contains(TestConstants.NEGATIVE_NUMBERS_INVALID_ERROR_MESSAGE));
+        Assertions.assertTrue(exception.getMessage().contains("-2,-3"));
+    }
+
+    @Test
+    void testAdd_WithNumbersGreaterThanThousand() {
+        StringCalculator stringCalculator = new StringCalculator();
+        Integer result = stringCalculator.add(TestConstants.INPUT_WITH_NUMBERS_GREATER_THAN_THOUSAND);
+        Assertions.assertEquals(2, result);
     }
 
 }

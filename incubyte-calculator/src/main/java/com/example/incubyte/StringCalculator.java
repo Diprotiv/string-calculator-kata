@@ -27,6 +27,7 @@ public class StringCalculator {
         List<String> numbersList = splitAndValidate(numbers);
         return numbersList.stream()
                 .map(Integer::parseInt)
+                .filter(i -> i <= 1000)
                 .mapToInt(i -> i)
                 .sum();
     }
