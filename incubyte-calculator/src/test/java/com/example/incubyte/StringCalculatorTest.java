@@ -29,7 +29,7 @@ class StringCalculatorTest {
         Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> {
             stringCalculator.add(TestConstants.COMMA_SEPARATED_INVALID_NUMBERS);
         });
-        Assertions.assertTrue(exception.getMessage().contains(TestConstants.INVALID_INPUT_FORMAT));
+        Assertions.assertTrue(exception.getMessage().contains(TestConstants.INVALID_INPUT_FORMAT_ERROR_MESSAGE));
     }
 
 
@@ -60,21 +60,31 @@ class StringCalculatorTest {
         Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> {
             stringCalculator.add(TestConstants.COMMA_SEPARATED_INVALID_NUMBERS_WITH_NEWLINE);
         });
-        Assertions.assertTrue(exception.getMessage().contains(TestConstants.INVALID_INPUT_FORMAT));
+        Assertions.assertTrue(exception.getMessage().contains(TestConstants.INVALID_INPUT_FORMAT_ERROR_MESSAGE));
     }
 
     @Test
     void testAdd_WithSemiColonAsDelimiter() {
         StringCalculator stringCalculator = new StringCalculator();
-        Integer result = stringCalculator.add("//;\n1;2");
+        Integer result = stringCalculator.add(TestConstants.NUMBERS_WITH_SEMICOLON);
         Assertions.assertEquals(3, result);
     }
 
     @Test
     void testAdd_WithSemiColonAndNewLineAsDelimiter() {
         StringCalculator stringCalculator = new StringCalculator();
-        Integer result = stringCalculator.add("//;\n1;2\n3");
+        Integer result = stringCalculator.add(TestConstants.NUMBERS_WITH_SEMICOLON_AND_NEWLINE);
         Assertions.assertEquals(6, result);
+    }
+
+    @Test
+    void testAdd_WithNegativeNumbers() {
+        StringCalculator stringCalculator = new StringCalculator();
+        Exception exception = Assertions.assertThrows(StringCalculatorException.class, () -> {
+            stringCalculator.add(TestConstants.INPUT_WITH_NEGATIVE_NUMBERS);
+        });
+        Assertions.assertTrue(exception.getMessage().contains(TestConstants.NEGATIVE_NUMBERS_INVALID_ERROR_MESSAGE));
+        Assertions.assertTrue(exception.getMessage().contains("-2"));
     }
 
 }
