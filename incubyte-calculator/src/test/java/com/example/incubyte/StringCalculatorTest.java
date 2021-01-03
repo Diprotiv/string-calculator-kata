@@ -103,4 +103,12 @@ class StringCalculatorTest {
         Assertions.assertEquals(6, result);
     }
 
+    @Test
+    void testAdd_WithMultipleDelimiters() {
+        StringCalculator stringCalculator = new StringCalculator();
+        Integer result = stringCalculator.add(TestConstants.NUMBERS_WITH_MULTIPLE_DELIMITERS);
+        Assertions.assertEquals(6, result);
+    }
+
+
 }
